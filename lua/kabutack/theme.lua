@@ -47,7 +47,7 @@ function M.get(config)
         DarkenedPanel = { bg = groups.panel },
         DarkenedStatusline = { bg = groups.panel },
         DiffAdd = { bg = blend(groups.git_add, groups.background, 0.5) },
-        DiffChange = { bg = p.blueGray1 },
+        DiffChange = { bg = p.blue },
         DiffDelete = { bg = blend(groups.git_delete, groups.background, 0.5) },
         DiffText = { bg = blend(groups.git_text, groups.background, 0.5) },
         diffAdded = { link = 'DiffAdd' },
@@ -152,10 +152,10 @@ function M.get(config)
 
 
         -- ===================================================================== known ==========================================================================
-        LineNr = { fg = '#ffffff' },                                -- color of column number on the left
+        LineNr = { fg = p.bg },                                -- color of column number on the left
         MatchParen = { bg = '#ffffff', fg = p.black },              -- color of matching parenthesis/bracket
         SignColumn = { fg = '#000000', bg = '#ffffff' },            -- space on the left of left column number
-        Visual = { fg = p.text, bg = '#ffffff' },                   -- selected color visual mode
+        Visual = { fg = p.text, bg = p.green },                   -- selected color visual mode
 
 
         -- default color in code file

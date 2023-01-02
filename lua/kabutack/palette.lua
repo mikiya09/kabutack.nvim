@@ -9,8 +9,11 @@ local variants = {
         -- they have to have specific color code, as well as the variable name
         -- so when you have time, go find out why. For now just keep them and ignore them
         teal1 = '#5DE4C7',          -- these
+
         teal2 = '#5FB3A1',          -- three 
-        pink3 = '#D0679D',          -- color
+
+        pink3 = '#D0679D',          -- colors
+
         -----------------------------------------------------------------------------------------
         
         -------------------------------------- Color Palette ------------------------------------
