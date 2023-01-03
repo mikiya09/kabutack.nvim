@@ -362,7 +362,7 @@ function M.get(config)
         NvimTreeRootFolder = { fg = p.bright_red },                             -- root folder: meaning the folder which you open the NvimTree
         NvimTreeFileNew = { fg = p.green },                                     -- new file color
         NvimTreeImageFile = { fg = p.green3 },                                  -- color of image file
-        NvimTreeNormal = { fg = p.white, bg = p.none },                         -- color of normal text-based file(.py .cpp etc), and the background of nvimTree
+        NvimTreeNormal = { fg = p.white, bg = p.none },                         -- color of normal text-based file(.py .cpp etc), and the background
         NvimTreeNormalNC = { fg = p.bright_black, bg = p.none },                -- color of nvimTree background and the file that you opened when in a file
         NvimTreeSpecialFile = { link = 'NvimTreeNormal' },
         NvimTreeOpenedFile = { fg = p.blue, bg = p.bg },
