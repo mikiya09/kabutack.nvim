@@ -279,7 +279,7 @@ function M.get(config)
         ["@type"] = { fg = p.bright_red },                                      -- defined class type, or struct type in c++, import package method in python
         ["@type.builtin"] = { fg = p.bright_red },                              -- ?
         ["@type.definition"] = { fg = p.bright_red },                           -- Typedef
-        ["@type.qualifier"] = { fg = p.bright_green },                          -- qualifier like the public/private keywords in the class declaration, or const keyword
+        ["@type.qualifier"] = { fg = p.bright_green },                          -- qualifier: public/private keywords in the class, or const keyword
         ["@parameter"] = { fg = p.white },
         ["@parameter.reference"] = { fg = p.white },
         ["@comment"] = { fg = p.bright_black, italic = true },
@@ -362,8 +362,8 @@ function M.get(config)
         NvimTreeRootFolder = { fg = p.bright_red },                             -- root folder: meaning the folder which you open the NvimTree
         NvimTreeFileNew = { fg = p.green },                                     -- new file color
         NvimTreeImageFile = { fg = p.green3 },                                  -- color of image file
-        NvimTreeNormal = { fg = p.white, bg = p.none },                         -- color of normal text-based file(.py .cpp etc), as well as the background of nvimTree
-        NvimTreeNormalNC = { fg = p.bright_black, bg = p.none },                -- color of nvimTree background and the file that you opened when you already in the file
+        NvimTreeNormal = { fg = p.white, bg = p.none },                         -- color of normal text-based file(.py .cpp etc), and the background of nvimTree
+        NvimTreeNormalNC = { fg = p.bright_black, bg = p.none },                -- color of nvimTree background and the file that you opened when in a file
         NvimTreeSpecialFile = { link = 'NvimTreeNormal' },
         NvimTreeOpenedFile = { fg = p.blue, bg = p.bg },
 
