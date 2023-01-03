@@ -151,11 +151,11 @@ function M.get(config)
         WildMenu = { link = 'IncSearch' },
 
 
-        -- ===================================================================== known ==========================================================================
-        LineNr = { fg = p.bg },                                -- color of column number on the left
-        MatchParen = { bg = '#ffffff', fg = p.black },              -- color of matching parenthesis/bracket
-        SignColumn = { fg = '#000000', bg = '#ffffff' },            -- space on the left of left column number
-        Visual = { fg = p.text, bg = p.green },                   -- selected color visual mode
+        -- ========================================================= known ===================================================================
+        LineNr = { fg = p.comment },                                -- color of column number on the left
+        MatchParen = { bg = p.none, fg = p.bright_red },            -- color of matching parenthesis/bracket
+        SignColumn = { fg = '#000000', bg = p.black },              -- color of the space on the left of left column number
+        Visual = { fg = p.black, bg = p.green },                    -- selected color visual mode
 
 
         -- default color in code file
@@ -165,7 +165,11 @@ function M.get(config)
         Number = { fg = p.white },                                  -- a number constant: 234, 0xff
         Boolean = { fg = p.green2 },                                -- a boolean constant: TRUE, false
         Float = { fg = p.white },                                   -- a floating point constant: 2.3e10
-        Identifier = { fg = p.cyan },                               -- (preferred) any variable name
+        -- Identifier: any variable, 
+        -- this Identifier name below is also a variable, 
+        -- change the color will change its color as well
+        Identifier = { fg = p.green2 },                             -- (preferred) any variable name, 
+
         Function = { fg = p.blue },                                 -- function name (also: methods for classes)
 
         Statement = { fg = p.text },                                -- (preferred) any statement
@@ -185,7 +189,8 @@ function M.get(config)
         --[[ Structure = { fg = p.blueGray1 },                        -- struct, union, enum, etc. ]]
         -- StorageClass  = { },                                       -- static, register, volatile, etc.
         -- Typedef = { fg = p.blueGray1 },                            -- A typedef
-        Special = { fg = p.red },                                   -- (preferred) any special symbol
+
+        Special = { fg = p.bright_yellow },                         -- (preferred) any special symbol: include the telescope icon in sinppet
         -- SpecialChar   = { },                                     -- special character in a constant
         Tag = { fg = p.text },                                      -- you can use CTRL-] on this
         Delimiter = { fg = p.blue },                                -- character that needs attention
@@ -225,8 +230,8 @@ function M.get(config)
         markdownH4 = { fg = p.blue, style = 'bold' },
         markdownLinkText = { fg = p.blue, style = 'underline' },
 
-        debugPC = { bg = p.background },                              -- used for highlighting the current line in terminal-debug
-        debugBreakpoint = { bg = p.background, fg = p.magenta },      -- used for breakpoint colors in terminal-debug
+        debugPC = { bg = p.background },                            -- used for highlighting the current line in terminal-debug
+        debugBreakpoint = { bg = p.background, fg = p.magenta },    -- used for breakpoint colors in terminal-debug
         DiagnosticError = { fg = groups.red },
         DiagnosticHint = { fg = groups.green },
         DiagnosticInfo = { fg = groups.blue },
@@ -257,54 +262,53 @@ function M.get(config)
         DiagnosticVirtualTextWarn = { fg = groups.bright_red },
 
 
-        -- Treesitter
-        --  fg = "#D8DEE9"
-        ["@include"] = { fg = "#A1EFD3" },
-        ["@string"] = { fg = "#FFE6B3" },
-        ["@string.regex"] = { fg = "#FFE6B3" },
-        ["@string.escape"] = { fg = "#FFE6B3" },
-        ["@keyword"] = { fg = "#A37ACC" },                                          -- For keywords that don't fall in previous categories
-        ["@keyword.function"] = { fg = "#A37ACC" },                                 -- const
-        ["@keyword.operator"] = { fg = "#A37ACC" },                                 -- new / delete
-        ["@keyword.return"] = { fg = "#A37ACC" },
-        ["@namespace"] = { fg = "#DBDEE9", underline = true },
-        ["@type"] = { fg = "#ff757f" },
-        ["@type.builtin"] = { fg = "#ff757f" },                                     -- ?
-        ["@type.definition"] = { fg = "#ff757f" },                                  -- Typedef
-        ["@type.qualifier"] = { fg = "#ff757f" },
-        ["@parameter"] = { fg = "#DBDEE9" },
-        ["@parameter.reference"] = { fg = "#DBDEE9" },
-        ["@comment"] = { fg = "#3E3859", italic = true },
-        ["@repeat"] = { fg = "#A37ACC" },
-        ["@conditional"] = { fg = "#A37ACC" },
-        ["@function"] = { fg = "#7aa2f7" },
-        ["@function.builtin"] = { fg = "#7aa2f7" },
-        ["@function.call"] = { fg = "#7aa2f7" },
-        ["@function.macro"] = { fg = "#7aa2f7" },
-        ["@operator"] = { fg = "#7aa2f7" },
-        ["@punctuation.delimiter"] = { fg = "#DBDEE9" },                            -- semi-colon or dots
-        ["@punctuation.bracket"] = { fg = "#DBDEE9" },                              -- brackets and parens
-        ["@punctuation.special"] = { fg = "#7aa2f7" },                              -- special punctutation
-        ["@variable"] = { fg = "#DBDEE9" },                                         -- user defined variable
-        ["@variable.builtin"] = { fg = "#ff757f" },                                 -- variables defined by the languages, like `this` or `self`
-        ["@boolean"] = { fg = "#4fd6be" },
-        ["@number"] = { fg = "#DBDEE9" },                                           -- backup: #4fd6be | #62D196
-        ["@float"] = { fg = "#DBDEE9" },
-        ["@constructor"] = { fg = "#91DDFF" },
-        ["@property"] = { fg = "#4fd6be" },                                         -- private data member
-        ["@constant"] = { fg = "#7aa2f7" },
-        ["@constant.builtin"] = { fg = "#7aa2f7" },
-        ["@constant.macro"] = { fg = "#7aa2f7" },
-        ["@exception"] = { fg = "#ff757f" },
-        ["@tag"] = { fg = "#A37ACC" },                                              -- html ?
+        -- ========================================================= Treesitter ===================================================================
+        ["@include"] = { fg = p.bright_green },                                 -- the #include in .cpp / import in .py
+        ['@method'] = { fg = p.bright_magenta },                                -- method in class, ex: student.study(), study() is a method
+        ["@string"] = { fg = p.bright_yellow },
+        ["@string.regex"] = { fg = p.bright_yellow },
+        ["@string.escape"] = { fg = p.bright_yellow },
+        ["@keyword"] = { fg = p.magenta },                                      -- For keywords that don't fall in previous categories
+        ["@keyword.function"] = { fg = p.bright_magenta },                      -- const
+        ["@keyword.operator"] = { fg = p.magenta },                             -- new / delete
+        ["@keyword.return"] = { fg = p.magenta },
+        ["@namespace"] = { fg = p.white, underline = true },
+        ["@type"] = { fg = p.bright_red },                                      -- defined class type, or struct type in c++, import package method in python
+        ["@type.builtin"] = { fg = p.bright_red },                              -- ?
+        ["@type.definition"] = { fg = p.bright_red },                           -- Typedef
+        ["@type.qualifier"] = { fg = p.bright_green },                          -- qualifier like the public/private keywords in the class declaration, or const keyword
+        ["@parameter"] = { fg = p.white },
+        ["@parameter.reference"] = { fg = p.white },
+        ["@comment"] = { fg = p.bright_black, italic = true },
+        ["@repeat"] = { fg = p.bright_magenta },
+        ["@conditional"] = { fg = p.magenta },
+        ["@function"] = { fg = p.blue },
+        ["@function.builtin"] = { fg = p.blue },
+        ["@function.call"] = { fg = p.blue },
+        ["@function.macro"] = { fg = p.blue },
+        ["@operator"] = { fg = p.blue },
+        ["@punctuation.delimiter"] = { fg = p.white },                          -- semi-colon or dots
+        ["@punctuation.bracket"] = { fg = p.white },                            -- brackets and parens
+        ["@punctuation.special"] = { fg = p.blue },                             -- special punctutation
+        ["@variable"] = { fg = p.white },                                       -- user defined variable
+        ["@variable.builtin"] = { fg = p.bright_right },                        -- variables defined by the languages, like `this` or `self`
+        ["@boolean"] = { fg = p.green2 },
+        ["@number"] = { fg = p.white },                                         -- backup: #4fd6be | #62D196
+        ["@float"] = { fg = p.white },
+        ["@constructor"] = { fg = p.cyan },
+        ["@property"] = { fg = p.green2 },                                      -- private data member
+        ["@constant"] = { fg = p.blue },
+        ["@constant.builtin"] = { fg = p.blue },
+        ["@constant.macro"] = { fg = p.blue },
+        ["@exception"] = { fg = p.bright_red },
+        ["@tag"] = { fg = p.magenta },                                          -- html ?
 
 
         ['field'] = { fg = p.text },
-        ['@label'] = { fg = p.blue3 },
-        ['@method'] = { fg = p.teal1 },
-        ['@property'] = { fg = p.blue2 },
+        ['@label'] = { fg = p.blue },
+        ['@property'] = { fg = p.blue },
         ['@tag.delimiter'] = { fg = p.text },
-        ['@tag.attribute'] = { fg = p.blue3, style = styles.italic },
+        ['@tag.attribute'] = { fg = p.blue, style = styles.italic },
         ['@text'] = { fg = p.text },
         ['@title'] = { fg = groups.headings.h1, style = 'bold' },
 
