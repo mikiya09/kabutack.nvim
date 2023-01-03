@@ -46,7 +46,7 @@ function M.get(config)
         -- no idea for this section
         DarkenedPanel = { bg = groups.panel },
         DarkenedStatusline = { bg = groups.panel },
-        DiffAdd = { bg = blend(groups.git_add, groups.background, 0.5) },
+        DiffAdd = { bg = blend(groups.git_add, groups.background, 1) },
         DiffChange = { bg = p.blue },
         DiffDelete = { bg = blend(groups.git_delete, groups.background, 0.5) },
         DiffText = { bg = blend(groups.git_text, groups.background, 0.5) },
@@ -155,7 +155,7 @@ function M.get(config)
         LineNr = { fg = p.comment },                                -- color of column number on the left
         MatchParen = { bg = p.none, fg = p.bright_red },            -- color of matching parenthesis/bracket
         SignColumn = { fg = '#000000', bg = p.black },              -- color of the space on the left of left column number
-        Visual = { fg = p.black, bg = p.green },                    -- selected color visual mode
+        Visual = { fg = p.black, bg = p.green3 },                    -- selected color visual mode
 
 
         -- default color in code file
@@ -214,8 +214,10 @@ function M.get(config)
         htmlH1 = { fg = p.yellow, style = 'bold' },
         htmlH2 = { fg = p.bright_yellow2, style = 'bold' },
 
-        -- mkdHeading = { fg = c.orange, style = "bold" },
-        -- mkdCode = { bg = c.terminal_black, fg = c.fg },
+        ----------------------------------------- markdown -----------------------------------------
+        mkdHeading = { fg = p.yellow },
+        mkdCode = { bg = p.white, fg = p.bright_black },
+        markdownHeadingDelimiter = { fg = p.yellow, bold = true },
         mkdCodeDelimiter = { bg = p.bg, fg = p.text },
         mkdCodeStart = { fg = p.bright_black, style = 'bold' },
         mkdCodeEnd = { fg = p.bright_black, style = 'bold' },
@@ -224,11 +226,12 @@ function M.get(config)
         markdownHeadingDelimiter = { fg = p.blue, style = 'bold' },
         markdownCode = { fg = p.yellow },
         markdownCodeBlock = { fg = p.bright_yellow },
-        markdownH1 = { fg = p.blue, style = 'bold' },
-        markdownH2 = { fg = p.blue, style = 'bold' },
-        markdownH3 = { fg = p.blue, style = 'bold' },
-        markdownH4 = { fg = p.blue, style = 'bold' },
+        markdownH1 = { fg = p.yellow },
+        markdownH2 = { fg = p.yellow },
+        markdownH3 = { fg = p.yellow, style = 'bold' },
+        markdownH4 = { fg = p.yellow, style = 'bold' },
         markdownLinkText = { fg = p.blue, style = 'underline' },
+        ----------------------------------------- markdown -----------------------------------------
 
         debugPC = { bg = p.background },                            -- used for highlighting the current line in terminal-debug
         debugBreakpoint = { bg = p.background, fg = p.magenta },    -- used for breakpoint colors in terminal-debug
@@ -289,13 +292,13 @@ function M.get(config)
         ["@operator"] = { fg = p.blue },
         ["@punctuation.delimiter"] = { fg = p.white },                          -- semi-colon or dots
         ["@punctuation.bracket"] = { fg = p.white },                            -- brackets and parens
-        ["@punctuation.special"] = { fg = p.blue },                             -- special punctutation
+        ["@punctuation.special"] = { fg = p.white },                            -- special punctutation
         ["@variable"] = { fg = p.white },                                       -- user defined variable
         ["@variable.builtin"] = { fg = p.bright_right },                        -- variables defined by the languages, like `this` or `self`
         ["@boolean"] = { fg = p.green2 },
         ["@number"] = { fg = p.white },                                         -- backup: #4fd6be | #62D196
         ["@float"] = { fg = p.white },
-        ["@constructor"] = { fg = p.cyan },
+        ["@constructor"] = { fg = p.blue },                                     -- weird, {} is also affected in lua require().setup{}, is it a constructor?
         ["@property"] = { fg = p.green2 },                                      -- private data member
         ["@constant"] = { fg = p.blue },
         ["@constant.builtin"] = { fg = p.blue },
@@ -312,123 +315,90 @@ function M.get(config)
         ['@text'] = { fg = p.text },
         ['@title'] = { fg = groups.headings.h1, style = 'bold' },
 
-        --[[ -- tsx/jsx ]]
-        --[[ typescriptVariable = { fg = p.blue2 }, ]]
-        --[[ typescriptExport = { fg = p.teal1 }, ]]
-        --[[ typescriptDefault = { fg = p.teal1 }, ]]
-        --[[ typescriptConstraint = { fg = p.teal1 }, ]]
-        --[[ typescriptBlock = { fg = p.text }, ]]
-        --[[ typescriptIdentifierName = { fg = p.blueGray2 }, ]]
-        --[[ typescriptTSInclude = { fg = p.teal1 }, ]]
-        --[[ typescriptCastKeyword = { fg = p.blueGray2 }, ]]
-        --[[ typescriptEnum = { fg = p.blue4 }, ]]
-        --[[ typescriptTypeCast = { fg = p.blueGray2 }, ]]
-        --[[ typescriptParenExp = { fg = p.blueGray2 }, ]]
-        --[[ typescriptObjectType = { fg = p.blueGray1 }, ]]
-        --[[]]
-        --[[ -- lua ]]
-        --[[ luaTSConstructor = { fg = p.blueGray1 }, ]]
-        --[[]]
-        --[[ -- css ]]
-        --[[ cssTSFunction = { fg = p.blueGray1 }, ]]
-        --[[ cssTSProperty = { fg = p.blue2 }, ]]
-        --[[ cssTSType = { fg = p.teal1 }, ]]
-        --[[ cssTSKeyword = { fg = p.blueGray1 }, ]]
-        --[[ cssClassName = { fg = p.teal2, style = styles.italic }, ]]
-        --[[ cssPseudoClass = { fg = p.blue3, style = styles.italic }, ]]
-        --[[ cssDefinition = { fg = p.blue2 }, ]]
-        --[[ cssTSError = { link = 'cssClassName' }, ]]
-        --[[]]
-        --[[ -- vim.lsp.buf.document_highlight() ]]
-        --[[ LspReferenceText = { bg = p.blue2 }, ]]
-        --[[ LspReferenceRead = { bg = p.blue2 }, ]]
-        --[[ LspReferenceWrite = { bg = p.blue2 }, ]]
-        --[[]]
-        --[[ -- lsp-highlight-codelens ]]
-        --[[ LspCodeLens = { fg = p.blueGray1 }, -- virtual text of code lens ]]
-        --[[ LspCodeLensSeparator = { fg = p.blueGray3 }, -- separator between two or more code lens ]]
-        --[[]]
-        --[[ -- nvim-ts-rainbow ]]
-        --[[ rainbowcol1 = { fg = p.blue1 }, ]]
-        --[[ rainbowcol2 = { fg = p.teal1 }, ]]
-        --[[ rainbowcol3 = { fg = p.yellow }, ]]
-        --[[ rainbowcol4 = { fg = p.blue2 }, ]]
-        --[[ rainbowcol5 = { fg = p.teal2 }, ]]
-        --[[ rainbowcol6 = { fg = p.pink3 }, ]]
-        --[[ rainbowcol7 = { fg = p.blue3 }, ]]
-        --[[]]
-        --[[ -- romgrk/barbar.nvim ]]
-        --[[ BufferCurrent = { fg = p.text, bg = p.background2 }, ]]
-        --[[ BufferCurrentIndex = { fg = p.text, bg = p.background2 }, ]]
-        --[[ BufferCurrentMod = { fg = p.teal1, bg = p.background2 }, ]]
-        --[[ BufferCurrentSign = { fg = p.blueGray1, bg = p.background2 }, ]]
-        --[[ BufferCurrentTarget = { fg = p.yellow, bg = p.background2 }, ]]
-        --[[ BufferInactive = { fg = p.blueGray1 }, ]]
-        --[[ BufferInactiveIndex = { fg = p.blueGray1 }, ]]
-        --[[ BufferInactiveMod = { fg = p.teal1 }, ]]
-        --[[ BufferInactiveSign = { fg = p.blueGray2 }, ]]
-        --[[ BufferInactiveTarget = { fg = p.yellow }, ]]
-        --[[ BufferTabpageFill = { fg = groups.background, bg = groups.background }, ]]
-        --[[ BufferVisible = { fg = p.blueGray1 }, ]]
-        --[[ BufferVisibleIndex = { fg = p.blueGray1 }, ]]
-        --[[ BufferVisibleMod = { fg = p.teal1 }, ]]
-        --[[ BufferVisibleSign = { fg = p.blueGray2 }, ]]
-        --[[ BufferVisibleTarget = { fg = p.yellow }, ]]
-        --[[]]
-        --[[ -- lewis6991/gitsigns.nvim ]]
-        --[[ GitSignsAdd = { fg = groups.git_add }, ]]
-        --[[ GitSignsChange = { fg = groups.git_change }, ]]
-        --[[ GitSignsDelete = { fg = groups.git_delete }, ]]
-        --[[ SignAdd = { link = 'GitSignsAdd' }, ]]
-        --[[ SignChange = { link = 'GitSignsChange' }, ]]
-        --[[ SignDelete = { link = 'GitSignsDelete' }, ]]
-        --[[]]
-        --[[ -- mvllow/modes.nvim ]]
-        --[[ ModesCopy = { bg = p.yellow }, ]]
-        --[[ ModesDelete = { bg = p.magenta }, ]]
-        --[[ ModesInsert = { bg = p.bright_black }, ]]
-        --[[ ModesVisual = { bg = p.yellow }, ]]
-        --[[]]
-        --[[ -- kyazdani42/nvim-tree.lua ]]
-        --[[ NvimTreeEmptyFolderName = { fg = p.blueGray3 }, ]]
-        --[[ NvimTreeFileDeleted = { fg = p.pink3 }, ]]
-        --[[ NvimTreeFileDirty = { fg = p.blue4 }, ]]
-        --[[ NvimTreeFileMerge = { fg = p.blue2 }, ]]
-        --[[ NvimTreeFileNew = { fg = p.teal1 }, ]]
-        --[[ NvimTreeFileRenamed = { fg = p.blueGray3 }, ]]
-        --[[ NvimTreeFileStaged = { fg = p.blue1 }, ]]
-        --[[ NvimTreeFolderIcon = { fg = p.blue3 }, ]]
-        --[[ NvimTreeFolderName = { fg = p.blue3 }, ]]
-        --[[ NvimTreeGitDeleted = { fg = groups.git_delete }, ]]
-        --[[ NvimTreeGitDirty = { fg = groups.git_dirty }, ]]
-        --[[ NvimTreeGitIgnored = { fg = groups.git_ignore }, ]]
-        --[[ NvimTreeGitMerge = { fg = groups.git_merge }, ]]
-        --[[ NvimTreeGitNew = { fg = groups.git_add }, ]]
-        --[[ NvimTreeGitRenamed = { fg = groups.git_rename }, ]]
-        --[[ NvimTreeGitStaged = { fg = groups.git_stage }, ]]
-        --[[ NvimTreeImageFile = { fg = p.text }, ]]
-        --[[ NvimTreeNormal = { fg = p.text }, ]]
-        --[[ NvimTreeOpenedFile = { fg = p.text, bg = p.background1 }, ]]
-        --[[ NvimTreeOpenedFolderName = { link = 'NvimTreeFolderName' }, ]]
-        --[[ NvimTreeRootFolder = { fg = p.teal1 }, ]]
-        --[[ NvimTreeSpecialFile = { link = 'NvimTreeNormal' }, ]]
-        --[[ NvimTreeWindowPicker = { fg = groups.bg, bg = p.blueGray1 }, ]]
-        --[[]]
-        --[[ -- folke/which-key.nvim ]]
-        --[[ WhichKey = { fg = p.text }, ]]
-        --[[ WhichKeyGroup = { fg = p.text }, ]]
-        --[[ WhichKeySeparator = { fg = p.text }, ]]
-        --[[ WhichKeyDesc = { fg = p.text }, ]]
-        --[[ WhichKeyFloat = { bg = groups.panel }, ]]
-        --[[ WhichKeyValue = { fg = p.text }, ]]
-        --[[]]
-        --[[ -- luka-reineke/indent-blankline.nvim ]]
-        --[[ IndentBlanklineChar = { fg = p.background1 }, ]]
-        --[[ IndentBlanklineContextChar = { fg = p.yellow, gui = 'nocombine' }, ]]
-        --[[ IndentBlanklineContextStart = { fg = p.yellow, gui = 'underline' }, ]]
-        --[[ IndentBlanklineSpaceChar = { link = 'Whitespace' }, ]]
-        --[[ IndentBlanklineSpaceCharBlankline = { link = 'Whitespace' }, ]]
-        --[[]]
+        -- tsx/jsx
+        typescriptVariable = { fg = p.bright_blue },
+        typescriptExport = { fg = p.cyan },
+        typescriptDefault = { fg = p.cyan },
+        typescriptConstraint = { fg = p.cyan },
+        typescriptBlock = { fg = p.text },
+        typescriptIdentifierName = { fg = p.blue },
+        typescriptTSInclude = { fg = p.cyan },
+        typescriptCastKeyword = { fg = p.blue },
+        typescriptEnum = { fg = p.bright_blue },
+        typescriptTypeCast = { fg = p.blue },
+        typescriptParenExp = { fg = p.blue },
+        typescriptObjectType = { fg = p.blue },
+
+        -- lua
+        luaTSConstructor = { fg = p.white },
+
+        -- css
+        cssTSFunction = { fg = p.blue },
+        cssTSProperty = { fg = p.bright_blue },
+        cssTSType = { fg = p.cyan },
+        cssTSKeyword = { fg = p.blue },
+        cssClassName = { fg = p.cyan, style = styles.italic },
+        cssPseudoClass = { fg = p.bright_blue, style = styles.italic },
+        cssDefinition = { fg = p.bright_blue },
+        cssTSError = { link = 'cssClassName' },
+
+        -- LSP
+        -- -------------------------------------------------------------------------------
+        -- vim.lsp.buf.document_highlight()
+        LspReferenceText = { bg = p.bright_blue },
+        LspReferenceRead = { bg = p.bright_blue },
+        LspReferenceWrite = { bg = p.bright_blue },
+
+        -- lsp-highlight-codelens
+        LspCodeLens = { fg = p.blue }, -- virtual text of code lens
+        LspCodeLensSeparator = { fg = p.blue }, -- separator between two or more code lens
+        -- -------------------------------------------------------------------------------
+
+        -- NvimTree
+        NvimTreeFolderIcon = { fg = p.bright_green },                           -- folder icon color
+        NvimTreeFolderName = { fg = p.bright_green },                           -- folder name color
+        NvimTreeOpenedFolderName = { link = 'NvimTreeFolderName' },
+        NvimTreeEmptyFolderName = { fg = p.white },                             -- empty folder color
+        NvimTreeRootFolder = { fg = p.bright_red },                             -- root folder: meaning the folder which you open the NvimTree
+        NvimTreeFileNew = { fg = p.green },                                     -- new file color
+        NvimTreeImageFile = { fg = p.green3 },                                  -- color of image file
+        NvimTreeNormal = { fg = p.white, bg = p.none },                         -- color of normal text-based file(.py .cpp etc), as well as the background of nvimTree
+        NvimTreeNormalNC = { fg = p.bright_black, bg = p.none },                -- color of nvimTree background and the file that you opened when you already in the file
+        NvimTreeSpecialFile = { link = 'NvimTreeNormal' },
+        NvimTreeOpenedFile = { fg = p.blue, bg = p.bg },
+
+        NvimTreeFileDeleted = { fg = p.red },
+        NvimTreeFileDirty = { fg = p.bright_red },
+        NvimTreeFileMerge = { fg = p.blue },
+        NvimTreeFileRenamed = { fg = p.yellow },
+        NvimTreeFileStaged = { fg = p.white },
+
+        -- I want to know what are these command, but I don't know
+        NvimTreeWindowPicker = { fg = groups.bg, bg = p.blue },
+        NvimTreeWinSeparator = {
+          fg = p.green2 == "transparent" and p.white or p.bg,
+          bg = p.bg,
+        },
+        NvimTreeGitDeleted = { fg = groups.git_delete },
+        NvimTreeGitDirty = { fg = groups.git_dirty },
+        NvimTreeGitIgnored = { fg = groups.git_ignore },
+        NvimTreeGitMerge = { fg = groups.git_merge },
+        NvimTreeGitNew = { fg = groups.git_add },
+        NvimTreeGitRenamed = { fg = groups.git_rename },
+        NvimTreeGitStaged = { fg = groups.git_stage },
+        
+
+        -- Telescope
+        TelescopeBorder = { fg = p.blue },                                      -- the color of the telescope border
+        TelescopeNormal = { fg = p.white, bg = p.none },                        -- the color of file name & the color of telescope's background
+        TelescopeMatching = { fg = p.black , bg = p.bright_yellow },            -- the color of matching as your search
+        TelescopeSelection = { fg = p.black, bg = p.blue },                     -- the color of selected file
+        TelescopeSelectionCaret = { fg = p.black, bg = p.blue },                -- the color of prompt in the selection 
+        TelescopePromptNormal = { fg = p.blue },                                -- the color of text entered in the search prompt
+        TelescopePromptPrefix = { fg = p.green3 },                              -- the color of prompt icon 
+        TelescopeTitle = { fg = p.bright_yellow },                              -- the color of title on the telescope border
+
+
         --[[ -- hrsh7th/nvim-cmp ]]
         --[[ CmpItemAbbr = { fg = p.blueGray2 }, ]]
         --[[ CmpItemAbbrDeprecated = { fg = p.pink3, style = 'strikethrough' }, ]]
@@ -439,28 +409,80 @@ function M.get(config)
         --[[ CmpItemKindFunction = { fg = p.blue1 }, ]]
         --[[ CmpItemKindInterface = { fg = p.blue2 }, ]]
         --[[ CmpItemKindMethod = { fg = p.pink3 }, ]]
-        --[[ CmpItemKindSnippet = { fg = p.blueGray1 }, ]]
+        --[[ CmpItemKindSnippet = { fg = p.whie }, ]]
         --[[ CmpItemKindVariable = { fg = p.teal1 }, ]]
-        --[[]]
+
+
+        -- Buffer ?
+        BufferCurrent = { fg = p.text, bg = p.bg },
+        BufferCurrentIndex = { fg = p.text, bg = p.bg },
+        BufferCurrentMod = { fg = p.cyan, bg = p.bg },
+        BufferCurrentSign = { fg = p.blue, bg = p.bg },
+        BufferCurrentTarget = { fg = p.yellow, bg = p.bg },
+        BufferInactive = { fg = p.blue },
+        BufferInactiveIndex = { fg = p.blue },
+        BufferInactiveMod = { fg = p.cyan },
+        BufferInactiveSign = { fg = p.blue },
+        BufferInactiveTarget = { fg = p.yellow },
+        BufferTabpageFill = { fg = groups.background, bg = groups.background },
+        BufferVisible = { fg = p.blue },
+        BufferVisibleIndex = { fg = p.blue },
+        BufferVisibleMod = { fg = p.cyan },
+        BufferVisibleSign = { fg = p.blue },
+        BufferVisibleTarget = { fg = p.yellow },
+
+
+        -- nvim-ts-rainbow
+        --[[ rainbowcol1 = { fg = p.bright_blue }, ]]
+        --[[ rainbowcol2 = { fg = p.cyan }, ]]
+        --[[ rainbowcol3 = { fg = p.yellow }, ]]
+        --[[ rainbowcol4 = { fg = p.bright_blue }, ]]
+        --[[ rainbowcol5 = { fg = p.cyan }, ]]
+        --[[ rainbowcol6 = { fg = p.magenta }, ]]
+        --[[ rainbowcol7 = { fg = p.bright_blue }, ]]
+
+
+        --[[ -- lewis6991/gitsigns.nvim ]]
+        --[[ GitSignsAdd = { fg = groups.git_add }, ]]
+        --[[ GitSignsChange = { fg = groups.git_change }, ]]
+        --[[ GitSignsDelete = { fg = groups.git_delete }, ]]
+        --[[ SignAdd = { link = 'GitSignsAdd' }, ]]
+        --[[ SignChange = { link = 'GitSignsChange' }, ]]
+        --[[ SignDelete = { link = 'GitSignsDelete' }, ]]
+
+        --[[ -- mvllow/modes.nvim ]]
+        --[[ ModesCopy = { bg = p.yellow }, ]]
+        --[[ ModesDelete = { bg = p.magenta }, ]]
+        --[[ ModesInsert = { bg = p.bright_black }, ]]
+        --[[ ModesVisual = { bg = p.yellow }, ]]
+
+
+
+        -- folke/which-key.nvim
+        --[[ WhichKey = { fg = p.text }, ]]
+        --[[ WhichKeyGroup = { fg = p.text }, ]]
+        --[[ WhichKeySeparator = { fg = p.text }, ]]
+        --[[ WhichKeyDesc = { fg = p.text }, ]]
+        --[[ WhichKeyFloat = { bg = groups.panel }, ]]
+        --[[ WhichKeyValue = { fg = p.text }, ]]
+
+        --[[ -- luka-reineke/indent-blankline.nvim ]]
+        --[[ IndentBlanklineChar = { fg = p.background1 }, ]]
+        --[[ IndentBlanklineContextChar = { fg = p.yellow, gui = 'nocombine' }, ]]
+        --[[ IndentBlanklineContextStart = { fg = p.yellow, gui = 'underline' }, ]]
+        --[[ IndentBlanklineSpaceChar = { link = 'Whitespace' }, ]]
+        --[[ IndentBlanklineSpaceCharBlankline = { link = 'Whitespace' }, ]]
+
         --[[ -- ray-x/lsp_signature.nvim ]]
         --[[ LspSignatureActiveParameter = { bg = p.blueGray1 }, ]]
-        --[[]]
+
         --[[ -- rlane/pounce.nvim ]]
         --[[ PounceAccept = { fg = p.pink3, bg = p.text }, ]]
         --[[ PounceAcceptBest = { fg = p.text, bg = p.text }, ]]
         --[[ PounceGap = { link = 'Search' }, ]]
         --[[ PounceMatch = { link = 'Search' }, ]]
-        --[[]]
-        --[[ -- nvim-telescope/telescope.nvim ]]
-        --[[ TelescopeBorder = { fg = groups.border }, ]]
-        --[[ TelescopeMatching = { fg = p.teal1 }, ]]
-        --[[ TelescopeNormal = { fg = p.text }, ]]
-        --[[ TelescopePromptNormal = { fg = p.text }, ]]
-        --[[ TelescopePromptPrefix = { fg = p.blueGray1 }, ]]
-        --[[ TelescopeSelection = { fg = p.text, bg = p.blueGray1 }, ]]
-        --[[ TelescopeSelectionCaret = { fg = p.pink2, bg = p.blueGray1 }, ]]
-        --[[ TelescopeTitle = { fg = p.blueGray2 }, ]]
-        --[[]]
+
+
         --[[ -- phaazon/hop.nvim ]]
         --[[ HopNextKey = { fg = p.blue1 }, ]]
         --[[ HopNextKey1 = { fg = p.teal1 }, ]]

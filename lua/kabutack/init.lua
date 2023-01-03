@@ -39,7 +39,7 @@ local config = {
         warn = 'red',
 
         -- color of git operation, overrided by .p10l.zsh, so doesn't really matter here
-        git_add = 'red2',
+        git_add = 'red',
         git_change = 'green2',
         git_delete = 'magenta',
         git_dirty = 'blue',
