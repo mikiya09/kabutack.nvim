@@ -387,14 +387,14 @@ function M.get(config)
         
 
         -- Telescope
-        TelescopeBorder = { fg = p.blue },                                      -- the color of the telescope border
+        TelescopeBorder = { fg = p.bright_green },                              -- the color of the telescope border
         TelescopeNormal = { fg = p.white, bg = p.none },                        -- the color of file name & the color of telescope's background
         TelescopeMatching = { fg = p.black , bg = p.bright_yellow },            -- the color of matching as your search
-        TelescopeSelection = { fg = p.black, bg = p.blue },                     -- the color of selected file
-        TelescopeSelectionCaret = { fg = p.black, bg = p.blue },                -- the color of prompt in the selection 
-        TelescopePromptNormal = { fg = p.blue },                                -- the color of text entered in the search prompt
+        TelescopeSelection = { fg = p.black, bg = p.bright_green },                     -- the color of selected file
+        TelescopeSelectionCaret = { fg = p.black, bg = p.bright_green },                -- the color of prompt in the selection 
+        TelescopePromptNormal = { fg = p.bright_red },                                -- the color of text entered in the search prompt
         TelescopePromptPrefix = { fg = p.green3 },                              -- the color of prompt icon 
-        TelescopeTitle = { fg = p.bright_green },                               -- the color of title on the telescope border
+        TelescopeTitle = { fg = p.bright_red },                                        -- the color of title on the telescope border
 
 
         --[[ -- hrsh7th/nvim-cmp ]]
