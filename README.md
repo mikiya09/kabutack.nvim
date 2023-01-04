@@ -5,7 +5,7 @@
 
 **> neovim colorscheme** <br>
 **> written in lua** <br>
-**> new to lua still exploring** <br>
+**> new to lua and still exploring** <br>
 <h3 align="center"><img src="./assets/appearance.png" width=900></h3>
 
 *inspired by [poimandres.nvim](https://github.com/olivercederborg/poimandres.nvim)*
@@ -26,7 +26,7 @@ working on it...
 ```
 ## Extras
 ```
-few apps I want add this theme to 
+same theme for apps I like coming soon
 
 1) alacritty 
 2) tmux
@@ -40,5 +40,5 @@ few apps I want add this theme to
 This is a Japanese cartoon series character [kabutack](https://metalheroes.fandom.com/wiki/Kabutack). 
 Actually there are more green color options and decorations in the theme instead of red ones, 
 so maybe it's more suitable to named after [Kuwagiro](https://metalheroes.fandom.com/wiki/Kuwagiro),
-but they both are beetle-like robots, so I prefer kabutack.*
+but they both are beetle-like robots, and I prefer kabutack.*
 

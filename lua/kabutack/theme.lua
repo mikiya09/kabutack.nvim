@@ -394,7 +394,7 @@ function M.get(config)
         TelescopeSelectionCaret = { fg = p.black, bg = p.blue },                -- the color of prompt in the selection 
         TelescopePromptNormal = { fg = p.blue },                                -- the color of text entered in the search prompt
         TelescopePromptPrefix = { fg = p.green3 },                              -- the color of prompt icon 
-        TelescopeTitle = { fg = p.bright_yellow },                              -- the color of title on the telescope border
+        TelescopeTitle = { fg = p.bright_green },                               -- the color of title on the telescope border
 
 
         --[[ -- hrsh7th/nvim-cmp ]]
