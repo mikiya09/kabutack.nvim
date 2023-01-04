@@ -75,10 +75,6 @@ function M.get(config)
         MoreMsg = { fg = p.blue },
         ------------------------------------------------------------------------
         -- no idea
-        NonText = { fg = p.blue },
-        -- no idea
-        Normal = { fg = p.text, bg = styles.bg },
-        -- no idea
         NormalFloat = { fg = p.text, bg = styles.float_background },
         -- no idea
         NormalNC = { fg = p.text, bg = styles.nc_background },
@@ -107,9 +103,6 @@ function M.get(config)
         RedrawDebugRecompose = { fg = '#ffffff', bg = p.magenta },
         ------------------------------------------------------------------------
         -- no idea
-        Search = { fg = p.white, bg = p.blue },
-        ------------------------------------------------------------------------
-        -- no idea
         SpecialKey = { fg = p.bright_black },
         -- no idea
         SpellBad = { sp = p.magenta, style = 'undercurl' },
@@ -123,7 +116,7 @@ function M.get(config)
         -- no idea
         StatusLine = { fg = p.blue, bg = styles.float_background },
         -- no idea
-        StatusLineNC = { fg = p.blue3, bg = styles.background },
+        StatusLineNC = { fg = p.blue, bg = styles.background },
         -- no idea
         StatusLineTerm = { link = 'StatusLine' },
         -- no idea
@@ -135,8 +128,6 @@ function M.get(config)
         TabLineFill = { bg = styles.float_background },
         -- no idea
         TabLineSel = { fg = p.text, bg = p.background },
-        -- no idea
-        Title = { fg = p.text },
         ------------------------------------------------------------------------
         -- no idea
         VertSplit = { fg = groups.border, bg = styles.vert_split },
@@ -155,9 +146,13 @@ function M.get(config)
         LineNr = { fg = p.comment },                                -- color of column number on the left
         MatchParen = { bg = p.none, fg = p.bright_red },            -- color of matching parenthesis/bracket
         SignColumn = { fg = '#000000', bg = p.black },              -- color of the space on the left of left column number
-        Visual = { fg = p.black, bg = p.green3 },                    -- selected color visual mode
-
-
+        Visual = { fg = p.black, bg = p.green4 },                   -- selected color visual mode
+        Search = { fg = p.black, bg = p.green3 },                   -- / search inside neovim
+        NonText = { fg = p.bg },                                    -- color of wavy line on the left of the neovim UI with column reach the end
+        -- for markdown
+        Title = { fg = p.blue },                                    -- text color after pound(#) sign: color of headings
+        Normal = { fg = p.bright_green, bg = styles.bg },           -- text color, such as command after: in nvim, <br>
+        ---------------
         -- default color in code file
         Constant = { fg = p.blue },                                 -- (preferred) any constant
         String = { fg = p.bright_yellow },                          -- a string constant: "this is a string"
@@ -214,7 +209,7 @@ function M.get(config)
         htmlH1 = { fg = p.yellow, style = 'bold' },
         htmlH2 = { fg = p.bright_yellow2, style = 'bold' },
 
-        ----------------------------------------- markdown -----------------------------------------
+        ----------------------------------------- markdown, but acutally not working -----------------------------------------
         mkdHeading = { fg = p.yellow },
         mkdCode = { bg = p.white, fg = p.bright_black },
         markdownHeadingDelimiter = { fg = p.yellow, bold = true },
@@ -290,29 +285,32 @@ function M.get(config)
         ["@function.call"] = { fg = p.blue },
         ["@function.macro"] = { fg = p.blue },
         ["@operator"] = { fg = p.blue },
-        ["@punctuation.delimiter"] = { fg = p.white },                          -- semi-colon or dots
-        ["@punctuation.bracket"] = { fg = p.white },                            -- brackets and parens
-        ["@punctuation.special"] = { fg = p.white },                            -- special punctutation
-        ["@variable"] = { fg = p.white },                                       -- user defined variable
-        ["@variable.builtin"] = { fg = p.bright_right },                        -- variables defined by the languages, like `this` or `self`
+        ["@punctuation.delimiter"] = { fg = p.white },                              -- semi-colon or dots
+        ["@punctuation.bracket"] = { fg = p.white },                                -- brackets and parens
+        ["@punctuation.special"] = { fg = p.white },                                -- special punctutation
+        ["@variable"] = { fg = p.white },                                           -- user defined variable
+        ["@variable.builtin"] = { fg = p.bright_right },                            -- variables defined by the languages, like `this` or `self`
         ["@boolean"] = { fg = p.green2 },
-        ["@number"] = { fg = p.white },                                         -- backup: #4fd6be | #62D196
+        ["@number"] = { fg = p.white },                                             -- backup: #4fd6be | #62D196
         ["@float"] = { fg = p.white },
-        ["@constructor"] = { fg = p.blue },                                     -- weird, {} is also affected in lua require().setup{}, is it a constructor?
-        ["@property"] = { fg = p.green2 },                                      -- private data member
+        ["@constructor"] = { fg = p.blue },                                         -- weird, {} is also affected in lua require().setup{}, is it a constructor?
+        ["@property"] = { fg = p.green2 },                                          -- private data member
         ["@constant"] = { fg = p.blue },
         ["@constant.builtin"] = { fg = p.blue },
         ["@constant.macro"] = { fg = p.blue },
         ["@exception"] = { fg = p.bright_red },
-        ["@tag"] = { fg = p.magenta },                                          -- html ?
-
-
+        ["@tag"] = { fg = p.magenta },                                                      -- html ?
+        -- for markdown
+        ['@punctuation.special.markdown'] = { fg = p.black, bg = p.bright_yellow2 },         -- delimiter of heading in markdown file: the "Pound" sign (#)
+        ["@text.literal.markdown"] = { fg = p.green3 },                                     -- the color of normal code block inside ``` ```
+        ["@text.literal.markdown_inline"] = { fg = p.black, bg = p.grey },                  -- the color of code inside ``
+        ['@text'] = { fg = p.bright_red },                                                        -- color of *text* in markdown file
+        --
         ['field'] = { fg = p.text },
         ['@label'] = { fg = p.blue },
         ['@property'] = { fg = p.blue },
         ['@tag.delimiter'] = { fg = p.text },
         ['@tag.attribute'] = { fg = p.blue, style = styles.italic },
-        ['@text'] = { fg = p.text },
         ['@title'] = { fg = groups.headings.h1, style = 'bold' },
 
         -- tsx/jsx
@@ -414,8 +412,8 @@ function M.get(config)
 
 
         -- Buffer ?
-        BufferCurrent = { fg = p.text, bg = p.bg },
-        BufferCurrentIndex = { fg = p.text, bg = p.bg },
+        BufferCurrent = { fg = p.yellow, bg = p.bg },
+        BufferCurrentIndex = { fg = p.yellow, bg = p.bg },
         BufferCurrentMod = { fg = p.cyan, bg = p.bg },
         BufferCurrentSign = { fg = p.blue, bg = p.bg },
         BufferCurrentTarget = { fg = p.yellow, bg = p.bg },
