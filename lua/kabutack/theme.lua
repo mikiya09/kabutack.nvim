@@ -301,10 +301,10 @@ function M.get(config)
         ["@exception"] = { fg = p.bright_red },
         ["@tag"] = { fg = p.magenta },                                                      -- html ?
         -- for markdown
-        ['@punctuation.special.markdown'] = { fg = p.black, bg = p.bright_yellow2 },         -- delimiter of heading in markdown file: the "Pound" sign (#)
+        ['@punctuation.special.markdown'] = { fg = p.black, bg = p.bright_yellow2 },        -- delimiter of heading in markdown file: the "Pound" sign (#)
         ["@text.literal.markdown"] = { fg = p.green3 },                                     -- the color of normal code block inside ``` ```
-        ["@text.literal.markdown_inline"] = { fg = p.black, bg = p.grey },                  -- the color of code inside ``
-        ['@text'] = { fg = p.bright_red },                                                        -- color of *text* in markdown file
+        ["@text.literal.markdown_inline"] = { fg = p.black, bg = p.green4 },                -- the color of code inside ``
+        ['@text'] = { fg = p.bright_red },                                                  -- color of *text* in markdown file
         --
         ['field'] = { fg = p.text },
         ['@label'] = { fg = p.blue },
