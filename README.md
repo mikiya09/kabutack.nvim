@@ -13,7 +13,7 @@
 ## &#x25c8; Installation
 install with *[packer](https://github.com/wbthomason/packer.nvim):*
 ```lua
-use { 'mikiya09/kabutack.nvim'}
+use { 'mikiya09/kabutack.nvim' }
 ```
 ##  &#x270e; Setup
 ```lua
