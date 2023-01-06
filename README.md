@@ -1,6 +1,6 @@
 
 
-<h3 align="center"><img src="./assets/ladybug.png"></h3>
+<h3 align="center"><img src="./assets/ladybug.svg" width=120></h3>
 <h1 align="center">kabutack.nvim</h1>
 
 **> neovim colorscheme** <br>
