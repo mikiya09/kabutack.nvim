@@ -145,7 +145,8 @@ function M.get(config)
         -- ========================================================= known ===================================================================
         LineNr = { fg = p.comment },                                -- color of column number on the left
         MatchParen = { bg = p.none, fg = p.bright_red },            -- color of matching parenthesis/bracket
-        SignColumn = { fg = '#000000', bg = p.black },              -- color of the space on the left of left column number
+        SignColumn = { fg = '#000000', bg = '#121212' },            -- color of the space on the left of left column number 
+                                                                    -- for some reason p.black is not normally displayed
         Visual = { fg = p.black, bg = p.green4 },                   -- selected color visual mode
         Search = { fg = p.black, bg = p.green3 },                   -- / search inside neovim
         NonText = { fg = p.bg },                                    -- color of wavy line on the left of the neovim UI with column reach the end
